@@ -1,7 +1,8 @@
+
 import ExpenseItem from "./Components/ExpenseItem";
 
 function App() {
-let expenses = [
+  let expenses = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -29,21 +30,26 @@ let expenses = [
       amount: 548,
       date: new Date(),
       LocationOfExpenditure: "London",
-    }
+    },
   ];
 
   return (
     <div className="App">
-      {/* <ExpenseItem/> */}
-      {expenses.map((element,index) => (
-      <ExpenseItem
-        key={index}
+  
+      {/* {expenses.map((element, index) => (
+        <ExpenseDate
+         key={index}
+         date={element.date} />
+      ))} */}
+      {expenses.map((element, index) => (
+        <ExpenseItem
+          key={index}
           name={element.title}
           amount={element.amount}
-          date={element.date.toISOString()}
+          date={element.date}
           location={element.LocationOfExpenditure}
         />
-        // console.log(element.LocationOfExpenditure)
+     
       ))}
     </div>
   );
