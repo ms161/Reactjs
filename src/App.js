@@ -1,7 +1,6 @@
-
 import ExpenseItem from "./Components/Expenses/ExpenseItem";
 
-const App=()=> {
+const App = () => {
   let expenses = [
     {
       id: "e1",
@@ -35,12 +34,7 @@ const App=()=> {
 
   return (
     <div className="App">
-  
-      {/* {expenses.map((element, index) => (
-        <ExpenseDate
-         key={index}
-         date={element.date} />
-      ))} */}
+      
       {expenses.map((element, index) => (
         <ExpenseItem
           key={index}
@@ -49,10 +43,10 @@ const App=()=> {
           date={element.date}
           location={element.LocationOfExpenditure}
         />
-     
       ))}
+     
     </div>
   );
-}
+};
 
 export default App;
