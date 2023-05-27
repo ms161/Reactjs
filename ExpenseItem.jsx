@@ -1,24 +1,40 @@
-import './ExpenseItem.css'
-function ExpenseItem(props){
-    const expenseDate=new Date()
-    const expenseTitle='car Insurance'
-    const expenseAmount=300
-    const LocationOfExpenditure='India'
-    // console.log(props.name)
-    return (
-    <div className="expense-item">
-        <div>{props.date}</div>
-        <div className="expense-item__description">
-            <h2>{props.name}</h2>
-            <div className="expense-item__price">{props.amount}
-           
-            </div>
-            <h4 className='location' >{props.location}</h4>
-        </div>
-        
-    </div>
-    
-    )
-}
+// import "./ExpenseItem.css";
+import React, { useState } from "react";
+import ExpenseDate from "./ExpenseDate";
+import ExpenseDetails from "./ExpenseDetails";
+import Card from "../UI/Card";
+
+// useState() //we cant call this here
+const ExpenseItem = (props) => {
+  // useState(); //we can only call this inside our component
+  //use state return an array, first value we get is value itself and second value we get as a function
+  const [title, setTitle] = useState(props.name);
+  const [amount, setAmount] = useState(props.amount);
+  //the title is the value , and setTitle is updated function from which we can change the value of title
+
+  const click = (e) => {
+setTitle('Updated!')
+setAmount(100)
+//when we call setTitle() the jsx file will get executed again and thats how we get our new data rendered to screen again 
+    // e.target.parentElement.remove();
+    console.log(title)
+
+  };
+
+  return (
+    <Card className="expense-item2">
+      <ExpenseDate date={props.date} />
+
+      <ExpenseDetails
+        name={title}
+        amount={amount}
+        location={props.location}
+      />
+
+      <button onClick={click}>Delete Expense</button>
+      
+    </Card>
+  );
+};
 
 export default ExpenseItem;
