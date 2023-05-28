@@ -7,27 +7,83 @@ const ExpenseForm = () => {
   //   console.log(e.target.value);
   // }
 
-  const [enterTitle,setEnterdTitle]=useState('')
-  const [enterAmount,setEnterdAmount]=useState('')
-  const [enterDate,setEnterdDate]=useState('')
-  function titleChanger(e){
-    setEnterdTitle(e.target.value)
-    console.log(enterTitle)
-  }
-  function amountChanger(e){
-    setEnterdAmount(e.target.value)
-    console.log(enterTitle)
-  }
-  function dateChanger(e){
-    setEnterdDate(e.target.value)
-    console.log(enterTitle)
-  }
+  const [enterTitle, setEnterdTitle] = useState("");
+  const [enterAmount, setEnterdAmount] = useState("");
+  const [enterDate, setEnterdDate] = useState("");
+  // const [userInput, setUserInput] = useState({
+  //   enterTitle: "",
+  //   enterAmount: "",
+  //   enterDate: "",
+  // });
 
-
+  function titleChanger(e) {
+    setEnterdTitle(e.target.value);
+    console.log(enterTitle);
+    // *****************************************************
+    // *****************************************************
+    // setUserInput({
+    //   ...userInput,
+    //   enterTitle:e.target.value
+    // })
+    // ********************************************************
+    // ********************************************************
+    // setUserInput((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     enterTitle: e.target.value,
+    //   };
+    // });
+    // console.log(userInput.enterTitle);
+  }
+  function amountChanger(e) {
+    setEnterdAmount(e.target.value);
+    // console.log(enterTitle);
+     // ********************************************************
+    // ********************************************************
+    // setUserInput({
+    //   ...userInput,
+    //   enterAmount: e.target.value,
+    // });
+     // ********************************************************
+    // ********************************************************
+// setUserInput((prevState) => {
+//       return {
+//         ...prevState,
+//         enterDate: e.target.value,
+//       };
+//     });
+  }
+  function dateChanger(e) {
+    setEnterdDate(e.target.value);
+    // console.log(enterTitle);
+    //***************************************************** */
+    //***************************************************** */
+    // setUserInput({
+    //   ...userInput,
+    //   enterDate: e.target.value,
+    // });
+    // ****************************************************************************************
+    // ****************************************************************************************
+    // setUserInput((prevState) => {//this will give us previous state
+    //   return {
+    //     ...prevState,
+    //     enterDate: e.target.value,
+    //   };
+    // });
+  }
+   function btn(e){
+    e.preventDefault()
+   let obj={
+    title:enterTitle,
+    amount:enterAmount,
+    date:enterDate
+   }
+   console.log(obj)
+   }
   return (
     <form>
-      <div onChange={titleChanger} className="new-expense__controls">
-        <div className="new-expense">
+      <div className="new-expense__controls">
+        <div  onChange={titleChanger} className="new-expense">
           <label>Title</label>
           <input type="text" />
         </div>
@@ -41,7 +97,7 @@ const ExpenseForm = () => {
         </div>
       </div>
       <div className="new-expense">
-        <button type="submit">Add Expense</button>
+        <button onClick={btn} type="submit">Add Expense</button>
       </div>
     </form>
   );
