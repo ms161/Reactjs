@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   // function con(e) {
   //   console.log(e.target.value);
   // }
@@ -38,23 +38,24 @@ const ExpenseForm = () => {
   function amountChanger(e) {
     setEnterdAmount(e.target.value);
     // console.log(enterTitle);
-     // ********************************************************
+    // ********************************************************
     // ********************************************************
     // setUserInput({
     //   ...userInput,
     //   enterAmount: e.target.value,
     // });
-     // ********************************************************
     // ********************************************************
-// setUserInput((prevState) => {
-//       return {
-//         ...prevState,
-//         enterDate: e.target.value,
-//       };
-//     });
+    // ********************************************************
+    // setUserInput((prevState) => {
+    //       return {
+    //         ...prevState,
+    //         enterDate: e.target.value,
+    //       };
+    //     });
   }
   function dateChanger(e) {
     setEnterdDate(e.target.value);
+
     // console.log(enterTitle);
     //***************************************************** */
     //***************************************************** */
@@ -71,33 +72,39 @@ const ExpenseForm = () => {
     //   };
     // });
   }
-   function btn(e){
-    e.preventDefault()
-   let obj={
-    title:enterTitle,
-    amount:enterAmount,
-    date:enterDate
-   }
-   console.log(obj)
-   }
+  function btn(e) {
+    e.preventDefault();
+    let obj = {
+      title: enterTitle,
+      amount: enterAmount,
+      date: new Date(enterDate)
+    };
+    props.onSaveExpenseData(obj)
+    // console.log(obj);
+    setEnterdTitle('')
+    setEnterdAmount('')
+    setEnterdDate('')
+  }
   return (
     <form>
       <div className="new-expense__controls">
-        <div  onChange={titleChanger} className="new-expense">
+        <div   className="new-expense">
           <label>Title</label>
-          <input type="text" />
+          <input onChange={titleChanger} value={enterTitle} type="text" />
         </div>
-        <div onChange={amountChanger} className="new-expense">
+        <div className="new-expense">
           <label>amount</label>
-          <input type="number" min="0.01" step="0.01" />
+          <input onChange={amountChanger}  value={enterAmount} type="number" min="0.01" step="0.01" />
         </div>
-        <div onChange={dateChanger} className="new-expense">
+        <div className="new-expense">
           <label>Date</label>
-          <input type="date" min="2019-01-01" max="2022-12-31" />
+          <input onChange={dateChanger}  value={enterDate} type="date" min="2019-01-01" max="2022-12-31" />
         </div>
       </div>
       <div className="new-expense">
-        <button onClick={btn} type="submit">Add Expense</button>
+        <button className="btn" onClick={btn} type="submit">
+          Add Expense
+        </button>
       </div>
     </form>
   );
