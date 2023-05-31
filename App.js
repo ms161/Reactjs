@@ -1,74 +1,52 @@
-import { useState } from "react";
-import ExpenseItem from "./Components/Expenses/ExpenseItem";
-import NewExpense from './Components/Expenses/NewExpenses/NewExpense'
-let expenses = [
+import React, { useState } from 'react';
+
+import NewExpense from './components/NewExpense/NewExpense';
+import Expenses from './components/Expenses/Expenses';
+
+const DUMMY_EXPENSES = [
   {
-    id: "e1",
-    title: "Toilet Paper",
-    amount: 21,
-    date: new Date(),
-    LocationOfExpenditure: "USA",
+    id: 'e1',
+    title: 'Toilet Paper',
+    amount: 94.12,
+    date: new Date(2020, 7, 14),
+  },
+  { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
+  {
+    id: 'e3',
+    title: 'Car Insurance',
+    amount: 294.67,
+    date: new Date(2021, 2, 28),
   },
   {
-    id: "e2",
-    title: "New Tv",
-    amount: 2301,
-    date: new Date(),
-    LocationOfExpenditure: "India",
-  },
-  {
-    id: "e3",
-    title: "car Insurance",
-    amount: 2121,
-    date: new Date(),
-    LocationOfExpenditure: "Canada",
-  },
-  {
-    id: "e4",
-    title: "New Desk",
-    amount: 548,
-    date: new Date(),
-    LocationOfExpenditure: "London",
+    id: 'e4',
+    title: 'New Desk (Wooden)',
+    amount: 450,
+    date: new Date(2021, 5, 12),
   },
 ];
 
-
 const App = () => {
- 
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
-  
-const addExpenseHandler=expense=>{
-// setData([...data,expense])
-setData((prevExpenses)=>{
-  return [...prevExpenses,expense]
-})
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    });
+  };
 
-}
-
-const [data,setData]=useState(expenses)
+  // return React.createElement(
+  //   'div',
+  //   {},
+  //   React.createElement('h2', {}, "Let's get started!"),
+  //   React.createElement(Expenses, { items: expenses })
+  // );
 
   return (
-    <div className="App">
-     <NewExpense onAddExpense={addExpenseHandler} />
-    
-     
-      {data.map((element, index) => (
-        
-        <ExpenseItem
-        
-          key={index}
-          name={element.title}
-          amount={element.amount}
-          date={element.date}
-          location={element.LocationOfExpenditure}
-        />
-      )) }
-    
-   
-      
+    <div>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
     </div>
   );
 };
 
 export default App;
-
